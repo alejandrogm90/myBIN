@@ -24,8 +24,6 @@ require 'misClases/constantes_PHP.php';
 
 #VARIABLES
 
-
-
 echo 'Hola mundo',PHP_EOL;
 
 echo Constantes::$usuario ,PHP_EOL;

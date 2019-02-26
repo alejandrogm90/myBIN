@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
 #
 #
@@ -17,15 +17,22 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# VARIABLES GLOBALES
-MiDirBin="/home/COMPARTIDA/PROYECTOS/myBIN/bin"
+import os
+import sys
 
-#Muestra versión de linux
-lsb_release -a
-
-# POR MI PARTE ....
-#if [ -f "$MiDirBin/archey.py" ] ; then $MiDirBin/archey.py ; fi
-if [ -f "$MiDirBin/miCPU.sh" ] ; then $MiDirBin/miCPU.sh ; fi
-if [ -f "$MiDirBin/modificaciones.sh" ] ; then $MiDirBin/modificaciones.sh ; fi
-if [ -f "/home/COMPARTIDA/frases" ] ; then cat /home/COMPARTIDA/frases ; fi
+if __name__ == '__main__':
+    
+    if len(sys.argv) < 2:
+        print("Número de parámetros erroneo.")
+        exit(1)
+    else:
+        trozos = sys.argv[1].split("/")
+        if len(trozos) <= 1:
+            print("La cadena enviada es erronea erroneo.")
+            exit(2)
+        else:
+            cadena_nueva = ""
+            for parte in range(len(trozos)-1):
+                cadena_nueva = cadena_nueva + trozos[parte] + "/"
+            print(cadena_nueva)
 

@@ -17,7 +17,8 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from Tkinter import *
+from tkinter import *
+
 def frame(root, side):
     w = Frame(root)
     w.pack(side=side, expand=YES, fill=BOTH)
@@ -53,7 +54,7 @@ class Calculator(Frame):
 
     def calc(self, display):
         try:
-            display.set(`eval(display.get())`)
+            display.set(eval(display.get()))
         except ValueError:
             display.set("ERROR")
 

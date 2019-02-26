@@ -18,32 +18,36 @@
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # GLOBALES
-#========================================================
-datos="~/datos"
+#=========
+fichero_IP="/home/COMPARTIDA/PROYECTOS/myBIN/bin/datos/ip.tmp"
 ficheroSalida="/tmp/informe.tmp"
 HOY=$(date +%F)' '$(date +%T)
 MiIP=`~/bin/miIP.py`
 
 
-# MAIN
+# Contenido del texto del fichero de salida
 #========================================================
 echo 'Host: '$HOSTNAME >> $ficheroSalida
 echo 'Fecha: '$HOY >> $ficheroSalida
-echo 'Mi IP: http://'$MiIP >> $ficheroSalida
+if [ "$MiIP" != "`head -1 $fichero_IP`" ] ; then
+	echo 'Mi IP anterior era: http://'"`head -1 $fichero_IP`" >> $ficheroSalida
+fi
+echo 'Mi IP actual es: http://'$MiIP >> $ficheroSalida
+mpstat -P ALL >> $ficheroSalida
 echo ' ' >> $ficheroSalida
 free -h >> $ficheroSalida
 
+
+
+#========================================================
 # Envío por correo o muestro por pantalla
 if [ $# -eq 1 ] && [ $1 == "enviar" ] ; then
-	if [ ! -f $datos ] ; then echo "" > $datos ; fi
-	if [ "$MiIP" != "`head -1 $datos`" ] ; then
-		echo $HOY > $datos
+	if [ ! -f $fichero_IP ] ; then echo $MiIP > $fichero_IP ; fi
+	if [ "$MiIP" != "`head -1 $fichero_IP`" ] ; then
 		~/bin/enviarCorreo.py $ficheroSalida
-		echo "Correo enviado"
-	else
-		echo "Misma IP"
 	fi
 else
+	if [ ! -f $fichero_IP ] ; then echo $MiIP > $fichero_IP ; fi
 	cat $ficheroSalida
 fi
 

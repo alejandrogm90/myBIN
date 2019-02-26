@@ -17,8 +17,6 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-ficheroSalida="~/informe"
-HOY=$(date +%F)' '$(date +%T)
-echo $HOY >> $ficheroSalida
-echo `~/bin/informe.sh enviar`  >> $ficheroSalida
-
+sudo du -sh /var/cache/apt
+sudo apt autoclean
+sudo apt clean

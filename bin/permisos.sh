@@ -37,9 +37,10 @@ if [ -d "$compartida/PROYECTOS/Django-project" ] ; then
 	sudo chmod -R 775 $compartida/PROYECTOS/Django-project
 	sudo chmod 755 $compartida/PROYECTOS/Django-project/*/manage.py
 	proyectos=`ls $compartida/PROYECTOS/Django-project`
-	for lin1 in $proyectos ; do
-		sudo chmod -R 644 "$compartida/PROYECTOS/Django-project/"$lin1'/'$lin1/*
-	done
+	#for lin1 in $proyectos ; do
+	#	sudo chmod -R 644 "$compartida/PROYECTOS/Django-project/"$lin1'/'$lin1/*
+	#done
+	sudo chmod -R 644 "$compartida/PROYECTOS/Django-project/*/*/*
 	echo 'Finalizado... '
 fi
 

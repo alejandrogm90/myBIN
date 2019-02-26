@@ -16,25 +16,13 @@
 #
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
- 
-# AHORA - Obtenemos la IP nuestra IP real de la WEB - (http://www.mi-ip.net/)
-import urllib2
 
-if __name__ == '__main__':
-    try:
-        respuesta = pagina = trozo = ""
-        indice = 0
+import urllib.request
+response = urllib.request.urlopen('http://www.vermiip.es/')
+html = response.read()
+cad1 = str(html)
+cad1 = cad1.split('id="cuerpo"')[1]
+cad1 = cad1.split('h2')[1]
+cad1 = cad1.split(' ')[4].split('<')[0]
+print(cad1)
 
-        respuesta = urllib2.urlopen('http://www.cualesmiip.com/')
-        pagina = respuesta.read()
-        # Hay que buscar el id por que no siempre la posición es la misma en la página
-        indice = pagina.find("titulo-ip")
-        indice = indice + 52
-        for ind2 in range(indice, (indice + 15)):
-            trozo += pagina[ind2]
-        trozo = trozo.split("<")
-        # Escribe tu IP
-        print(trozo[0])
-    except:
-        print("ERROR")
-        exit(1)
