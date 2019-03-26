@@ -27,5 +27,5 @@ lsb_release -a
 #if [ -f "$MiDirBin/archey.py" ] ; then $MiDirBin/archey.py ; fi
 if [ -f "$MiDirBin/miCPU.sh" ] ; then $MiDirBin/miCPU.sh ; fi
 if [ -f "$MiDirBin/modificaciones.sh" ] ; then $MiDirBin/modificaciones.sh ; fi
-if [ -f "/home/COMPARTIDA/frases" ] ; then cat /home/COMPARTIDA/frases ; fi
+if [ -f "/home/COMPARTIDA/datos/frases" ] ; then cat /home/COMPARTIDA/datos/frases ; fi
 

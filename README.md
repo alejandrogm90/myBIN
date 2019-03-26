@@ -5,15 +5,15 @@ Es un directorio "bin" donde almaceno pequeños scripts muy útiles. ¿Por que e
  - Por que es una genial forma de mejorar las posivilidades que me permite UNIX.
  - Por que así estos scripts pueden ser mejorados, labase de otros o ayudar a crear otros nuevos.
 
-__Algunos son muy antiguos, aún tengo que revisarlos todos!!!__
-
 ## Prerequisitos ##
 Tener un SO Linux:
+ - Debes copiar la carpeta "bin" en tu home para que quede "$HOME/bin" .
  - Si no existe esta linea ( PATH="$HOME/bin:$PATH" ) en tu fichero "~/.profile" hay que añadirla.
- - postgreSQL: __sudo apt install postgresql__
- - mySQL: __sudo apt install mysql-server__
- - python3: __sudo apt install python python-dev__
- - PHP: __sudo apt install php php-mcrypt php-mysql__
+ - postgreSQL.
+ - mySQL.
+ - python3.
+ - PHP.
+ - MongoDB
 
 ## Post-descarga ##
 Descomprimir el directorio "bin" en "~/bin". Esto unido a los anteriores pasos permitirán lanzar estos scritps desde tu terminal en cualquier momento.
@@ -30,4 +30,4 @@ Descomprimir el directorio "bin" en "~/bin". Esto unido a los anteriores pasos p
 - [x] [Alejandro Gómez](https://github.com/alejandrogm90) @alejandrogm90
 
 ## Licencia ##
-* GNU V3 (see `LICENSE` for details)
+* GNU V3 (ver `LICENSE` para más detalles)

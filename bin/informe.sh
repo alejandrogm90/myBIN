@@ -19,20 +19,26 @@
 
 # GLOBALES
 #=========
-fichero_IP="/home/COMPARTIDA/PROYECTOS/myBIN/bin/datos/ip.tmp"
-ficheroSalida="/tmp/informe.tmp"
+fichero_IP="/home/COMPARTIDA/datos/ip.tmp"
+ficheroSalida="/home/COMPARTIDA/datos/informe.tmp"
 HOY=$(date +%F)' '$(date +%T)
 MiIP=`~/bin/miIP.py`
 
+# Corrección de posibles errores
+#========================================================
+if [ ! -f $fichero_IP ] || [ ! -s $fichero_IP ] ; then 
+    echo $MiIP > $fichero_IP
+fi
 
 # Contenido del texto del fichero de salida
 #========================================================
-echo 'Host: '$HOSTNAME >> $ficheroSalida
+echo 'Host: '$HOSTNAME > $ficheroSalida
 echo 'Fecha: '$HOY >> $ficheroSalida
 if [ "$MiIP" != "`head -1 $fichero_IP`" ] ; then
 	echo 'Mi IP anterior era: http://'"`head -1 $fichero_IP`" >> $ficheroSalida
 fi
 echo 'Mi IP actual es: http://'$MiIP >> $ficheroSalida
+echo 'Mi IP local es: http://'`~/bin/miIP.py -l` >> $ficheroSalida
 mpstat -P ALL >> $ficheroSalida
 echo ' ' >> $ficheroSalida
 free -h >> $ficheroSalida
@@ -42,15 +48,13 @@ free -h >> $ficheroSalida
 #========================================================
 # Envío por correo o muestro por pantalla
 if [ $# -eq 1 ] && [ $1 == "enviar" ] ; then
-	if [ ! -f $fichero_IP ] ; then echo $MiIP > $fichero_IP ; fi
 	if [ "$MiIP" != "`head -1 $fichero_IP`" ] ; then
 		~/bin/enviarCorreo.py $ficheroSalida
 	fi
 else
-	if [ ! -f $fichero_IP ] ; then echo $MiIP > $fichero_IP ; fi
 	cat $ficheroSalida
 fi
 
 # Elimino el fichero temporal
-rm $ficheroSalida
+#echo '' > $ficheroSalida
 

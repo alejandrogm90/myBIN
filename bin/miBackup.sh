@@ -19,9 +19,9 @@
 
 # VARIABLES GLOBALES
 fichTemporal="/tmp/"$0".tmp"
-fichLista="/home/COMPARTIDA/BACKUP_list"
-fichLOG="/home/COMPARTIDA/BACKUP_log"
-fichErrorLOG="/home/COMPARTIDA/BACKUP_error_log"
+fichLista="/home/COMPARTIDA/datos/BACKUP_list"
+fichLOG="/home/COMPARTIDA/datos/BACKUP_log"
+fichErrorLOG="/home/COMPARTIDA/datos/BACKUP_error_log"
 dirBackup="/home/COMPARTIDA/BACKUP/"
 
 # FUNCIONES
