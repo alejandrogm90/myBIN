@@ -17,12 +17,31 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import sys
+import socket
 import urllib.request
-response = urllib.request.urlopen('http://www.vermiip.es/')
-html = response.read()
-cad1 = str(html)
-cad1 = cad1.split('id="cuerpo"')[1]
-cad1 = cad1.split('h2')[1]
-cad1 = cad1.split(' ')[4].split('<')[0]
-print(cad1)
 
+def IP_local():
+    respuesta = ""
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    respuesta = s.getsockname()[0]
+    s.close()
+    return respuesta
+
+def IP_externa():
+    response = urllib.request.urlopen('http://www.vermiip.es/')
+    html = response.read()
+    cad1 = str(html)
+    cad1 = cad1.split('id="cuerpo"')[1]
+    cad1 = cad1.split('h2')[1]
+    cad1 = cad1.split(' ')[4].split('<')[0]
+    return cad1
+
+if __name__ == '__main__':
+    if sys.argv[1] == "-l" or sys.argv[1] == "--local" :
+        print(IP_local())
+    else:
+        print(IP_externa())
+
+    
