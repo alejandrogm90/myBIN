@@ -19,8 +19,8 @@
 
 # GLOBALES
 #=========
-fichero_IP="~/.ip.tmp"
-ficheroSalida="~/.informe.tmp"
+fichero_IP=`pwd`'/datos/ip.tmp'
+ficheroSalida=`pwd`'/datos/informe.tmp'
 HOY=$(date +%F)' '$(date +%T)
 MiIP=`~/bin/miIP.py`
 
