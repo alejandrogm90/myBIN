@@ -2,6 +2,7 @@
 
 #
 #
+#
 #       Copyright 2017 Alejandro Gomez
 #
 #       This program is free software: you can redistribute it and/or modify
@@ -17,16 +18,11 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# VARIABLES GLOBALES
-COMPARTIDA="/opt/COMPARTIDA"
-dirBIN=$COMPARTIDA"/PROYECTOS/myBIN/bin"
+# sudo apt install figlet cowsay fortune fortunes-es fortunes-es-off
 
-#Muestra versión de linux
-lsb_release -a
-
-# POR MI PARTE ....
-#if [ -f "$dirBIN/archey.py" ] ; then $dirBIN/archey.py ; fi
-if [ -f "$dirBIN/miCPU.sh" ] ; then $dirBIN/miCPU.sh ; fi
-if [ -f "$dirBIN/modificaciones.sh" ] ; then $dirBIN/modificaciones.sh ; fi
-if [ -f "$COMPARTIDA/datos/frases" ] ; then cat $COMPARTIDA/datos/frases ; fi
-
+vacas=(`ls /usr/share/cowsay/cows`)
+TVACAS=${#vacas[*]}
+NVACA=$((RANDOM%$TVACAS))
+vaca=${vacas[$NVACA]}
+figlet Alex Mola y Lo sabes
+fortune | cowsay -f $vaca

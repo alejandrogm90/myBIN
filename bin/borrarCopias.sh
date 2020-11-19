@@ -1,6 +1,4 @@
 #!/bin/bash
-
-#
 #
 #       Copyright 2017 Alejandro Gomez
 #
@@ -17,16 +15,26 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# VARIABLES GLOBALES
-COMPARTIDA="/opt/COMPARTIDA"
-dirBIN=$COMPARTIDA"/PROYECTOS/myBIN/bin"
+# Variables
+ficheroTemporal="/tmp/borrarCopias.tmp"
+lineasFicheroTemporal=0
 
-#Muestra versión de linux
-lsb_release -a
+find "$1" 1 | grep -F [1] > $ficheroTemporal
+lineasFicheroTemporal=`wc -l $ficheroTemporal | cut -d' ' -f1`
 
-# POR MI PARTE ....
-#if [ -f "$dirBIN/archey.py" ] ; then $dirBIN/archey.py ; fi
-if [ -f "$dirBIN/miCPU.sh" ] ; then $dirBIN/miCPU.sh ; fi
-if [ -f "$dirBIN/modificaciones.sh" ] ; then $dirBIN/modificaciones.sh ; fi
-if [ -f "$COMPARTIDA/datos/frases" ] ; then cat $COMPARTIDA/datos/frases ; fi
+
+for linea in `seq 1 $lineasFicheroTemporal` ; do
+	cadena1="`awk 'NR=='$linea $ficheroTemporal`"
+	if [ -d "$cadena1" ] ; then 
+		echo '----'
+	else
+		if [ -f "$cadena1" ] ; then 
+			rm -R "$cadena1"
+		else
+			echo 'ERROR: '$cadena1  
+		fi 
+	fi
+done
+
+if [ -f $ficheroTemporal ] ; then rm $ficheroTemporal ; fi						# Elimino los ficheros temporales
 

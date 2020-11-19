@@ -101,7 +101,8 @@ ENV/
 .mypy_cache/
 
 # POR MI PARTE
-bin/archey.py
 bin/misClases/constantes_PHP.php
 bin/misClases/constantes_PYTHON.py
-bin/arrays.sh
+bin/datos/*.tmp
+bin/datos/*.txt
+bin/log/*.txt

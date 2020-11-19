@@ -2,6 +2,7 @@
 
 #
 #
+#
 #       Copyright 2017 Alejandro Gomez
 #
 #       This program is free software: you can redistribute it and/or modify
@@ -17,16 +18,26 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# VARIABLES GLOBALES
-COMPARTIDA="/opt/COMPARTIDA"
-dirBIN=$COMPARTIDA"/PROYECTOS/myBIN/bin"
+dir1="$HOME/bin"
+dir2=""
+texto1=""
+numF=0
+numA=0
 
-#Muestra versión de linux
-lsb_release -a
-
-# POR MI PARTE ....
-#if [ -f "$dirBIN/archey.py" ] ; then $dirBIN/archey.py ; fi
-if [ -f "$dirBIN/miCPU.sh" ] ; then $dirBIN/miCPU.sh ; fi
-if [ -f "$dirBIN/modificaciones.sh" ] ; then $dirBIN/modificaciones.sh ; fi
-if [ -f "$COMPARTIDA/datos/frases" ] ; then cat $COMPARTIDA/datos/frases ; fi
-
+if [ -d "$dir1" ] ; then
+	dir2=(`ls $dir1`)
+	echo $dir2
+	numF=${#dir2[*]}
+	numA=$numF
+	for f1 in `ls $dir1`; do
+		dir2="$dir1/$f1"
+		echo $dir2
+		cat $dir2
+		texto1=$texto1'#'
+		numA=$(( $numA - 1 ))
+		echo 'Progress '$texto1' [ %'$(( 100 - (($numA * 100) / $numF) ))' ]'
+		sleep 1
+	done
+else
+	echo "No existe "$dir1
+fi

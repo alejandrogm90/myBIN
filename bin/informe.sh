@@ -19,10 +19,17 @@
 
 # GLOBALES
 #=========
-fichero_IP=`pwd`'/datos/ip.tmp'
-ficheroSalida=`pwd`'/datos/informe.tmp'
+dir_COMUN='/opt/COMPARTIDA'
 HOY=$(date +%F)' '$(date +%T)
 MiIP=`~/bin/miIP.py`
+fichero_IP=$dir_COMUN'/datos/ip.tmp'
+if [ ! -f $fichero_IP ] ; then 
+	echo '' > "$fichero_IP" 
+fi
+ficheroSalida=$dir_COMUN'/datos/informe.tmp'
+if [ ! -f $ficheroSalida ] ; then 
+	echo '' > "$ficheroSalida" 
+fi
 
 # Corrección de posibles errores
 #========================================================
